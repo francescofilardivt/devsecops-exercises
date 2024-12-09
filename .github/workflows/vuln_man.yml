@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
+# Exercise SBOM generation
   sbom:
     name: Generate app SBOM
     runs-on: ubuntu-latest
@@ -46,6 +47,8 @@ jobs:
           retention-days: 5
           if-no-files-found: error
 
+
+# Exercise Docker SBOM generation
    sbom-docker:
      name: Generate docker SBOM
      runs-on: ubuntu-latest
@@ -91,6 +94,7 @@ jobs:
            retention-days: 5
            if-no-files-found: error
 
+# Exercise Merge multiple SBOMs
    merge-sbom:
      name: Merge previously generated SBOM
      runs-on: ubuntu-latest
