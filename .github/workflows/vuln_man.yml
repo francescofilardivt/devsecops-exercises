@@ -1,4 +1,4 @@
-name: SBOM generation final
+name: SBOM generation
 
 on:
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
           --format json \
           --spec-version="${{matrix.cdx_spec_version}}" \
           --project-name="${{ matrix.project }}" \
-          --project-version="build-${{ github.run_number }}" \
+          --project-version="${{ github.run_number }}" \
           -o "${{ matrix.project }}_bom.json"
 
       - name: Upload results
@@ -46,6 +46,7 @@ jobs:
           path: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
           retention-days: 5
           if-no-files-found: error
+
 
 ## Exercise Docker SBOM generation
   sbom-docker:
